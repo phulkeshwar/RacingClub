@@ -1,5 +1,5 @@
 export const homeContent = {
-  heroImage: "/assets/image.png",
+  heroImage: "/assets/intro.mp4",
   promoVideo: "/assets/track.0139.mp4",
   clubName: "Team Thrusters",
   subtitle: "NIAMT Student Racing Club",

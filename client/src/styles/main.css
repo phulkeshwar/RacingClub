@@ -168,4 +168,205 @@
   .car-cursor--accelerating .car-cursor__exhaust {
     animation: none;
   }
+
+  .hero__particles,
+  .hero__exhaust,
+  .hero__speed-line,
+  .scroll-progress,
+  .marquee-track {
+    animation: none !important;
+  }
 }
+
+.hero-section {
+  position: relative;
+  overflow: hidden;
+}
+
+.hero__title {
+  font-family: "Orbitron", sans-serif;
+}
+
+.hero__title-char {
+  display: inline-block;
+}
+
+.hero__speed-line {
+  position: absolute;
+  top: 20%;
+  left: -20%;
+  width: 60%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(232, 25, 44, 1), transparent);
+  opacity: 0.8;
+  transform: translateX(-200%);
+  animation: hero-speed-line 1.1s ease-out forwards;
+}
+
+@keyframes hero-speed-line {
+  to {
+    transform: translateX(280%);
+  }
+}
+
+.hero__particles {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(90deg, rgba(255, 255, 255, 0.08) 1px, transparent 1px), linear-gradient(180deg, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+  background-size: 150px 150px;
+  opacity: 0.35;
+  animation: particles-flow 0.8s linear infinite;
+}
+
+@keyframes particles-flow {
+  from { background-position: 0 0, 0 0; }
+  to { background-position: -460px 260px, 260px -310px; }
+}
+
+.hero__exhaust {
+  position: absolute;
+  bottom: 7%;
+  left: 50%;
+  width: 16rem;
+  height: 12rem;
+  transform: translateX(-50%);
+  pointer-events: none;
+  background: radial-gradient(circle at 50% 100%, rgba(255, 135, 37, 0.5), transparent 52%);
+  opacity: 0.75;
+  filter: blur(2px);
+  animation: exhaust-float 1.3s infinite ease-in-out;
+}
+
+@keyframes exhaust-float {
+  0%, 100% { transform: translateX(-50%) translateY(0); opacity: 0.65; }
+  50% { transform: translateX(-50%) translateY(-8px); opacity: 0.9; }
+}
+
+.stat-card {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 1rem;
+  background: linear-gradient(180deg, rgba(15, 23, 42, 0.8), rgba(8, 9, 16, 0.8));
+  padding: 1.1rem;
+}
+
+.timeline-section {
+  position: relative;
+  padding-top: 2px;
+}
+
+.timeline-line {
+  position: absolute;
+  left: 26px;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: rgba(232, 25, 44, 0.9);
+  transform-origin: top;
+  transform: scaleY(0);
+  transition: transform 0.8s ease-out;
+}
+
+.timeline-line.active {
+  transform: scaleY(1);
+}
+
+.timeline-card {
+  position: relative;
+  border-left: 3px solid transparent;
+  padding: 1.1rem 1rem 1.1rem 2.4rem;
+  background: rgba(13, 17, 31, 0.72);
+  border-radius: 0.9rem;
+}
+
+.timeline-card.from-right { text-align: right; }
+
+.team-card {
+  cursor: pointer;
+}
+
+.team-card:hover .team-card-image { transform: scale(1.06); }
+
+.team-card:hover .team-card-overlay { opacity: 1; transform: translateY(0); }
+
+.team-card-overlay {
+  opacity: 0;
+  translation: translateY(14px);
+}
+
+.team-card-role {
+  transform: translateY(12px);
+  opacity: 0;
+  transition: transform 0.25s ease, opacity 0.25s ease;
+}
+
+.team-card:hover .team-card-role {
+  transform: translateY(0); opacity: 1;
+}
+
+.gallery-item img.gallery-loaded { filter: blur(0); transform: scale(1.01); }
+
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: rgba(0,0,0,0.87);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.marquee {
+  overflow: hidden;
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee-scroll 20s linear infinite;
+}
+
+.marquee-item img { filter: grayscale(100%); transition: filter 0.3s ease, transform 0.3s ease; }
+
+.marquee-item:hover img { filter: grayscale(0); }
+
+@keyframes marquee-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #e8192c, #ff6b35);
+  z-index: 10000;
+  transition: width 0.12s ease;
+}
+
+.nav-link-text {
+  position: relative;
+  z-index: 1;
+}
+
+.nav-link-text::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  height: 2px;
+  width: 0;
+  background: #e8192c;
+  transition: width 0.3s ease;
+}
+
+a.active .nav-link-text::after,
+.nav-link-text:hover::after {
+  width: 100%;
+}
+
+.reveal-section { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease, transform 0.6s ease; }
+
+.reveal-section.revealed { opacity: 1; transform: translateY(0); }
+

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { iconMap } from "./icons";
 
@@ -15,10 +15,18 @@ const links = [
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
+  const [shrink, setShrink] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setShrink(window.scrollY > 40);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   return (
-    <header className="sticky top-0 z-20 flex items-center justify-between gap-4 border-b border-[#ffc95559] bg-[#030a12d1] px-4 py-3 backdrop-blur md:px-8">
-      <div className="flex items-center gap-3">
+    <header className={`sticky top-0 z-30 transition-all duration-300 ${shrink ? "bg-[#060e1f]/80 backdrop-blur-xl border-b border-[#e8192c33] py-1" : "bg-[#030a12d1] py-3"}`}>
+      <div className="mx-auto flex w-[92vw] max-w-6xl items-center justify-between gap-4 px-0 md:px-2">
+        <div className="flex items-center gap-3">
         <a href="/"><img src="/assets/logoniamtrACING (1).png" alt="Team Thrusters logo" className="h-12 w-12 object-contain" /></a>
         <div>
           <h1 className="font-display text-base tracking-wide">Team Thrusters</h1>
@@ -44,16 +52,20 @@ export default function Navbar() {
             key={item.to}
             to={item.to}
             className={({ isActive }) =>
-              `px-4 py-3 font-semibold tracking-wide transition md:rounded-lg md:px-3 md:py-2 ${
-                isActive ? "bg-[#ffc95526] text-[#ffc955]" : "hover:bg-[#ffc9551f] hover:text-[#ffc955]"
+              `relative px-4 py-3 font-semibold tracking-wide text-white transition-all duration-250 md:rounded-lg md:px-3 md:py-2 ${
+                isActive
+                  ? "text-[#ffc955] active"
+                  : "text-slate-100 hover:text-[#ff6b35]"
               }`
             }
             onClick={() => setOpen(false)}
           >
-            {item.label}
+            <span className="nav-link-text">{item.label}</span>
+            <span className={`absolute left-0 bottom-1 h-[2px] w-0 bg-[#e8192c] transition-all duration-300 ${shrink ? "md:bottom-0" : ""}`} />
           </NavLink>
         ))}
       </nav>
-    </header>
+    </div>
+  </header>
   );
 }

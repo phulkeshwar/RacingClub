@@ -3,6 +3,12 @@ import { fetchHomeContent } from "../api/content";
 import { iconMap } from "../components/icons";
 import { ErrorState, LoadingState } from "../components/PageState";
 import Seo from "../components/Seo";
+import HeroSection from "../components/HeroSection";
+import StatsCounter from "../components/StatsCounter";
+import EventsTimeline from "../components/EventsTimeline";
+import TeamGrid from "../components/TeamGrid";
+import GalleryGrid from "../components/GalleryGrid";
+import SponsorsMarquee from "../components/SponsorsMarquee";
 import { buildCloudinarySrcSet, getCloudinaryImageUrl } from "../utils/cloudinary";
 
 const panelClass =
@@ -40,28 +46,19 @@ export default function HomePage() {
   const content = state.data;
 
   return (
-    <div className="cursor-target grid gap-4">
+    <div className="cursor-target grid gap-8">
       <Seo
         title="Official Team"
         description="NIAMT Racing is the official motorsport and Formula Student team of NIAMT Ranchi. Explore projects, achievements, and team updates."
         path="/"
       />
 
-      <section className="relative min-h-[340px] overflow-hidden rounded-2xl">
-        <img
-          src={getCloudinaryImageUrl(content.heroImage, { width: 1400 })}
-          srcSet={buildCloudinarySrcSet(content.heroImage)}
-          sizes="(max-width: 768px) 100vw, 1200px"
-          alt="NIAMT Racing vehicle at track event"
-          className="h-screen w-full object-cover brightness-50"
-          fetchPriority="high"
-        />
-        <div className="absolute inset-0 flex flex-col justify-center bg-gradient-to-r from-[#020810bf] to-[#02081030] p-5">
-          <h2 className="font-display text-3xl leading-tight sm:text-4xl">{content.clubName}</h2>
-          <p className="mt-2 text-lg text-[#ffc955]">{content.subtitle}</p>
-          <small className="text-slate-300">{content.institution}</small>
-        </div>
-      </section>
+      <HeroSection />
+      <StatsCounter />
+      <EventsTimeline />
+      <TeamGrid />
+      <GalleryGrid />
+      <SponsorsMarquee />
 
       <section className={panelClass}>
         <h3 className={headingClass}>About The Club</h3>
@@ -75,12 +72,6 @@ export default function HomePage() {
           {content.announcementTicker}
         </div>
         <p className={textClass}>{content.announcementMessage}</p>
-      </section>
-
-      <section>
-        <video className="w-full rounded-2xl border border-white/10 " autoPlay muted loop playsInline>
-          <source src={content.promoVideo} />
-        </video>
       </section>
 
       <section className={panelClass}>
