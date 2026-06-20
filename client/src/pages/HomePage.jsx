@@ -39,7 +39,7 @@ const accentClassMap = {
 
 export default function HomePage() {
   return (
-    <div className="cursor-target mx-auto w-full max-w-6xl px-4 md:px-6">
+    <div className="cursor-target w-full">
       <Seo
         title="Official Team"
         description="Team Thrusters is NIAMT Racing Club. Discover our mission, engineering spirit, and how we build next-generation race cars."
@@ -48,7 +48,7 @@ export default function HomePage() {
 
       <HeroSection />
 
-      <main className="space-y-16 py-12">
+      <main className="mx-auto w-full max-w-6xl px-4 md:px-6 space-y-16 py-12">
         <section className="mx-auto max-w-3xl text-center">
           <span className="text-xs font-semibold uppercase tracking-wider text-[#ffc955]">
             Welcome to Team Thrusters

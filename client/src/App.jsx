@@ -48,7 +48,7 @@ export default function App() {
       <main
         className={
           isHome
-            ? "cursor-zone mx-auto w-full max-w-7xl px-4 md:px-6"
+            ? "cursor-zone w-full"
             : "cursor-zone mx-auto my-6 w-full max-w-6xl px-4 md:px-6"
         }
       >
