@@ -43,6 +43,32 @@ export default function SponsorshipPage() {
         path="/sponsorship"
       />
 
+      <section className="animate-fadeInUp rounded-2xl border border-white/10 bg-gradient-to-br from-[#112945e6] to-[#09182ad1] p-6 shadow-2xl grid gap-8 md:grid-cols-[1.2fr_0.8fr] items-center">
+        <div className="text-left">
+          <span className="text-xs font-semibold uppercase tracking-wider text-[#ffc955]">
+            Sponsorship & Support
+          </span>
+          <h2 className="mt-2 font-display text-3xl font-bold tracking-tight text-white sm:text-4xl uppercase">
+            Partner with Speed
+          </h2>
+          <p className="mt-4 text-base leading-relaxed text-slate-300">
+            Support student innovation, hands-on engineering, and motorsport excellence by sponsoring NIAMT Racing. Your partnership drives our team forward on the national stage.
+          </p>
+        </div>
+        <div className="overflow-hidden rounded-xl border border-white/10 bg-[#020a14a0] p-1.5 shadow-lg">
+          <video
+            className="w-full aspect-video rounded-lg object-contain"
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="auto"
+            poster="/assets/raceB.jpg"
+            src="/assets/track.0139.mp4"
+          />
+        </div>
+      </section>
+
       <section className={panelClass}>
         <h3 className="mb-3 font-display text-xl">Why Sponsor Us?</h3>
         <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
