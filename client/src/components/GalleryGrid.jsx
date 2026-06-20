@@ -2,12 +2,12 @@ import { useEffect, useState } from "react";
 import { useInView } from "react-intersection-observer";
 
 const photos = [
-  "/assets/gallery1.jpg",
-  "/assets/gallery2.jpg",
-  "/assets/gallery3.jpg",
-  "/assets/gallery4.jpg",
-  "/assets/gallery5.jpg",
-  "/assets/gallery6.jpg"
+  "/assets/race1.jpg",
+  "/assets/rae2.jpg",
+  "/assets/race3.jpg",
+  "/assets/race4.jpg",
+  "/assets/raceA.jpg",
+  "/assets/raceB.jpg"
 ];
 
 function GalleryItem({ src, index, onOpen }) {
@@ -47,7 +47,7 @@ export default function GalleryGrid() {
 
   return (
     <section className="section gallery-section reveal-section">
-      <div className="mx-auto grid w-[92vw] max-w-6xl grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="mx-auto grid w-full grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
         {photos.map((src, index) => (
           <GalleryItem key={src} src={src} index={index} onOpen={setOpenIndex} />
         ))}

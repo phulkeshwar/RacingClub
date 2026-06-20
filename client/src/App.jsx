@@ -18,6 +18,7 @@ import SponsorshipPage from "./pages/SponsorshipPage";
 export default function App() {
   const [homeContent, setHomeContent] = useState(null);
   const location = useLocation();
+  const isHome = location.pathname === "/";
 
   useSectionReveal();
 
@@ -44,14 +45,20 @@ export default function App() {
       <ScrollProgress />
       <AnimatedCursor />
       <Navbar />
-      <main className="cursor-zone mx-auto my-6 w-[92vw] max-w-6xl">
+      <main
+        className={
+          isHome
+            ? "cursor-zone mx-auto w-full max-w-7xl px-4 md:px-6"
+            : "cursor-zone mx-auto my-6 w-full max-w-6xl px-4 md:px-6"
+        }
+      >
         <AnimatePresence mode="wait">
           <motion.div
             key={location.pathname}
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -20 }}
-            transition={{ duration: 0.35, ease: "easeInOut" }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.25, ease: "easeInOut" }}
           >
             <Routes location={location}>
               <Route path="/" element={<HomePage />} />

@@ -1,9 +1,13 @@
 const logos = [
-  "/assets/sponsor1.png",
-  "/assets/sponsor2.png",
-  "/assets/sponsor3.png",
-  "/assets/sponsor4.png",
-  "/assets/sponsor5.png"
+  "/assets/club sponsors (1).png",
+  "/assets/club sponsors (2).png",
+  "/assets/club sponsors (3).png",
+  "/assets/club sponsors (4).png",
+  "/assets/club sponsors (5).png",
+  "/assets/club sponsors (6).png",
+  "/assets/club sponsors (7).png",
+  "/assets/club sponsors (8).png",
+  "/assets/club sponsors.png"
 ];
 
 export default function SponsorsMarquee() {

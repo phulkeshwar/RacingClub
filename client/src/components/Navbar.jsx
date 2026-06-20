@@ -25,7 +25,7 @@ export default function Navbar() {
 
   return (
     <header className={`sticky top-0 z-30 transition-all duration-300 ${shrink ? "bg-[#060e1f]/80 backdrop-blur-xl border-b border-[#e8192c33] py-1" : "bg-[#030a12d1] py-3"}`}>
-      <div className="mx-auto flex w-[92vw] max-w-6xl items-center justify-between gap-4 px-0 md:px-2">
+      <div className="mx-auto flex w-full max-w-6xl items-center justify-between gap-4 px-4 md:px-6">
         <div className="flex items-center gap-3">
         <a href="/"><img src="/assets/logoniamtrACING (1).png" alt="Team Thrusters logo" className="h-12 w-12 object-contain" /></a>
         <div>

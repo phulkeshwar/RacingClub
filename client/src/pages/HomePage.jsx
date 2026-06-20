@@ -1,134 +1,119 @@
-import { useEffect, useState } from "react";
-import { fetchHomeContent } from "../api/content";
 import { iconMap } from "../components/icons";
-import { ErrorState, LoadingState } from "../components/PageState";
 import Seo from "../components/Seo";
 import HeroSection from "../components/HeroSection";
-import StatsCounter from "../components/StatsCounter";
-import EventsTimeline from "../components/EventsTimeline";
 import TeamGrid from "../components/TeamGrid";
-import GalleryGrid from "../components/GalleryGrid";
 import SponsorsMarquee from "../components/SponsorsMarquee";
-import { buildCloudinarySrcSet, getCloudinaryImageUrl } from "../utils/cloudinary";
 
-const panelClass =
-  "animate-fadeInUp rounded-2xl border border-white/10 bg-gradient-to-br from-[#112945e6] to-[#09182ad1] p-4";
-const headingClass = "mb-3 font-display text-xl";
-const textClass = "text-base leading-6 text-slate-300";
-const cardClass = "rounded-xl border-l-4 border-l-[#ffc95599] bg-[#020a14a0] p-4";
+const focusAreas = [
+  {
+    title: "Design Excellence",
+    subtitle: "Aero & Chassis",
+    description:
+      "We create aerodynamic, lightweight race machines with precision engineering and student-driven innovation.",
+    icon: iconMap.faDraftingCompass,
+    accent: "orange"
+  },
+  {
+    title: "Power & Control",
+    subtitle: "Powertrain",
+    description:
+      "Our team develops efficient power systems for high performance, reliability, and track-ready handling.",
+    icon: iconMap.faBolt,
+    accent: "red"
+  },
+  {
+    title: "Team Culture",
+    subtitle: "Collaboration",
+    description:
+      "We invest in mentorship, hands-on learning, and a culture that makes every team member feel empowered.",
+    icon: iconMap.faUsersGear,
+    accent: "blue"
+  }
+];
 
-const accentMap = {
-  orange: "border-l-orange-500",
-  blue: "border-l-blue-500",
-  red: "border-l-red-500",
-  green: "border-l-emerald-500"
+const accentClassMap = {
+  orange: "border-l-orange-500 hover:border-l-orange-400",
+  red: "border-l-red-500 hover:border-l-red-400",
+  blue: "border-l-blue-500 hover:border-l-blue-400"
 };
 
 export default function HomePage() {
-  const [state, setState] = useState({ loading: true, error: "", data: null });
-
-  useEffect(() => {
-    const load = async () => {
-      try {
-        const data = await fetchHomeContent();
-        setState({ loading: false, error: "", data });
-      } catch (_error) {
-        setState({ loading: false, error: "Failed to load home content.", data: null });
-      }
-    };
-
-    load();
-  }, []);
-
-  if (state.loading) return <LoadingState />;
-  if (state.error || !state.data) return <ErrorState message={state.error} />;
-
-  const content = state.data;
-
   return (
-    <div className="cursor-target grid gap-8">
+    <div className="cursor-target mx-auto w-full max-w-6xl px-4 md:px-6">
       <Seo
         title="Official Team"
-        description="NIAMT Racing is the official motorsport and Formula Student team of NIAMT Ranchi. Explore projects, achievements, and team updates."
+        description="Team Thrusters is NIAMT Racing Club. Discover our mission, engineering spirit, and how we build next-generation race cars."
         path="/"
       />
 
       <HeroSection />
-      <StatsCounter />
-      <EventsTimeline />
-      <TeamGrid />
-      <GalleryGrid />
-      <SponsorsMarquee />
 
-      <section className={panelClass}>
-        <h3 className={headingClass}>About The Club</h3>
-        <p className={textClass}>{content.aboutPrimary}</p>
-        <p className={`${textClass} mt-2`}>{content.aboutSecondary}</p>
-      </section>
+      <main className="space-y-16 py-12">
+        <section className="mx-auto max-w-3xl text-center">
+          <span className="text-xs font-semibold uppercase tracking-wider text-[#ffc955]">
+            Welcome to Team Thrusters
+          </span>
+          <h2 className="mt-4 font-display text-3xl font-bold text-white sm:text-4xl">
+            College motorsport, engineered for the next generation.
+          </h2>
+          <p className="mt-6 text-base leading-8 text-slate-300 sm:text-lg">
+            We are a student-run racing club at NIAMT Ranchi. Every season, we design, build, and compete with purpose-built race cars in national and international formula events.
+          </p>
+        </section>
 
-      <section className={panelClass}>
-        <h3 className={headingClass}>{content.announcementTitle}</h3>
-        <div className="mb-3 rounded-lg border-l-4 border-[#ffc955] bg-[#ffc95526] px-3 py-2 font-semibold text-[#ffc955]">
-          {content.announcementTicker}
-        </div>
-        <p className={textClass}>{content.announcementMessage}</p>
-      </section>
-
-      <section className={panelClass}>
-        <h3 className={headingClass}>Our Engineering Domains</h3>
-        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
-          {content.domains.map((item) => {
-            const Icon = iconMap[item.icon] || iconMap.faCarSide;
-            const accentClass = accentMap[item.accent] || "border-l-[#ffc95599]";
+        <section className="grid gap-6 md:grid-cols-3">
+          {focusAreas.map((item) => {
+            const Icon = item.icon;
             return (
-              <article className={`${cardClass} ${accentClass}`} key={item.title}>
-                <Icon className="text-2xl text-[#ffc955]" />
-                <h4 className="mt-2 text-lg font-semibold">{item.title}</h4>
-                <strong className="text-[#ffc955]">{item.subtitle}</strong>
-                <p className="mt-2 text-slate-300">{item.description}</p>
+              <article
+                key={item.title}
+                className={`rounded-3xl border-l-4 ${accentClassMap[item.accent]} bg-[#081628] p-6 shadow-xl transition-transform duration-300 hover:-translate-y-1 hover:bg-[#0f213f]`}
+              >
+                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white/10 text-[#ffc955]">
+                  <Icon className="text-2xl" />
+                </div>
+                <h3 className="mt-5 text-xl font-semibold text-white">{item.title}</h3>
+                <p className="mt-3 text-slate-300">{item.description}</p>
+                <span className="mt-4 inline-block text-sm uppercase tracking-widest text-[#ffc955]/80">
+                  {item.subtitle}
+                </span>
               </article>
             );
           })}
-        </div>
-      </section>
+        </section>
 
-      <section className={panelClass}>
-        <h3 className={headingClass}>Our Legacy</h3>
-        <div className="grid gap-4 md:grid-cols-[1.2fr_1.8fr] md:items-center">
-          <img
-            src={getCloudinaryImageUrl(content.legacyImage, { width: 1000 })}
-            srcSet={buildCloudinarySrcSet(content.legacyImage)}
-            sizes="(max-width: 768px) 100vw, 45vw"
-            alt="NIAMT Racing team legacy"
-            className="w-full rounded-xl"
-            loading="lazy"
-          />
-          <p className={textClass}>{content.legacyText}</p>
-        </div>
-      </section>
+        <section className="rounded-[2rem] border border-white/10 bg-[#091224] p-8 text-center shadow-2xl backdrop-blur-md">
+          <p className="text-sm uppercase tracking-[0.3em] text-[#ffc955]">Ready to join the race?</p>
+          <h3 className="mt-4 text-3xl font-bold text-white sm:text-4xl">
+            Build with us, compete with us, represent NIAMT.
+          </h3>
+          <p className="mx-auto mt-4 max-w-2xl text-base leading-8 text-slate-300">
+            From design and fabrication to testing and competition, we welcome driven students who want real engineering experience.
+          </p>
+          <a
+            href="/contact"
+            className="mt-8 inline-flex items-center justify-center rounded-full border border-[#ff7d59] bg-[#ff7d59]/10 px-8 py-3 text-sm font-semibold uppercase tracking-[0.2em] text-[#ffb77f] transition hover:bg-[#ff7d59]/20"
+          >
+            Contact the Team
+          </a>
+        </section>
 
-      <section className={panelClass}>
-        <h3 className={headingClass}>Impact and Outreach</h3>
-        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
-          {content.reachMetrics.map((item) => (
-            <article className="rounded-xl border border-[#ffc9553d] bg-white/5 p-3" key={item.label}>
-              <h4 className="text-2xl font-bold text-[#ffc955]">{item.value}</h4>
-              <p className="mt-1 text-slate-300">{item.label}</p>
-            </article>
-          ))}
-        </div>
-      </section>
+        <section>
+          <div className="mb-10 text-center">
+            <span className="text-xs font-semibold uppercase tracking-wider text-[#ffc955]">The Crew</span>
+            <h2 className="mt-3 font-display text-3xl font-bold text-white sm:text-4xl">Meet the Team</h2>
+          </div>
+          <TeamGrid />
+        </section>
 
-      <section className={`${panelClass} text-center`}>
-        <img
-          src={getCloudinaryImageUrl(content.testimonial.image, { width: 256 })}
-          alt={content.testimonial.name}
-          className="mx-auto h-20 w-20 rounded-full border-2 border-[#ffc955] object-cover"
-          loading="lazy"
-        />
-        <blockquote className="mx-auto mt-3 max-w-2xl italic text-slate-200">{content.testimonial.text}</blockquote>
-        <cite className="mt-2 block font-semibold text-[#ffc955]">{content.testimonial.name}</cite>
-      </section>
+        <section>
+          <div className="mb-10 text-center">
+            <span className="text-xs font-semibold uppercase tracking-wider text-[#ffc955]">Our Partners</span>
+            <h2 className="mt-3 font-display text-3xl font-bold text-white sm:text-4xl">Sponsored by Industry Leaders</h2>
+          </div>
+          <SponsorsMarquee />
+        </section>
+      </main>
     </div>
   );
 }

@@ -1,17 +1,20 @@
 import { motion } from "framer-motion";
 
 const members = [
-  { name: "Aman Kumar", role: "Driver", image: "/assets/team1.jpg" },
-  { name: "Pratik Gupta", role: "Chassis Lead", image: "/assets/team2.jpg" },
-  { name: "Neha Singh", role: "Aerodynamics", image: "/assets/team3.jpg" },
-  { name: "Arjun Patel", role: "Powertrain", image: "/assets/team4.jpg" }
+  { name: "Aman Kumar", role: "Driver", image: "/assets/baja.jpg" },
+  { name: "Pratik Gupta", role: "Chassis Lead", image: "/assets/fsae.jpg" },
+  { name: "Neha Singh", role: "Aerodynamics", image: "/assets/niamt.jpg" },
+  { name: "Arjun Patel", role: "Powertrain", image: "/assets/see.jpg" }
 ];
 
 export default function TeamGrid() {
   return (
-    <section className="section team-section reveal-section">
-      <div className="mx-auto w-[92vw] max-w-6xl">
-        <h2 className="mb-5 text-3xl font-bold">Our Team</h2>
+    <section className="section team-section reveal-section" id="team">
+      <div className="mx-auto w-full">
+        <div className="mb-8 text-center">
+          <span className="text-xs font-semibold uppercase tracking-wider text-[#ffc955]">The Crew</span>
+          <h2 className="mt-2 font-display text-3xl font-bold text-white sm:text-4xl">Our Team</h2>
+        </div>
         <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {members.map((member, index) => (
             <motion.article

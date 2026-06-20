@@ -14,7 +14,7 @@ export default function Footer({ homeContent }) {
 
   return (
     <footer className="border-t border-white/10 px-4 pb-6 pt-5">
-      <div className="mx-auto grid w-[92vw] max-w-6xl gap-4 md:grid-cols-[2fr_1fr]">
+      <div className="mx-auto grid w-full max-w-6xl gap-4 px-4 md:px-6 md:grid-cols-[2fr_1fr]">
         <div>
           <h3 className="font-display text-lg">NIAMT Racing Club</h3>
           <p className="text-slate-300">Official Formula Student Club of NIAMT</p>

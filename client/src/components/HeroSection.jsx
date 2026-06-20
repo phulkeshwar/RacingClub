@@ -31,23 +31,35 @@ export default function HeroSection() {
     };
   }, []);
 
-  const charSpans = useMemo(
-    () => [...HERO_TEXT].map((char, idx) => (
-      <motion.span
-        key={`${char}-${idx}`}
-        className="hero__title-char"
-        initial={{ clipPath: "inset(0 50% 0 50%)", opacity: 0 }}
-        animate={{ clipPath: "inset(0 0% 0 0%)", opacity: 1 }}
-        transition={{ duration: 0.85, delay: 0.2 + idx * 0.03, ease: "easeOut" }}
-      >
-        {char}
-      </motion.span>
-    )),
-    []
-  );
+  const charSpans = useMemo(() => {
+    const words = HERO_TEXT.split(" ");
+    let globalIdx = 0;
+    return words.map((word, wordIdx) => {
+      const wordSpans = [...word].map((char) => {
+        const idx = globalIdx++;
+        return (
+          <motion.span
+            key={`${char}-${idx}`}
+            className="hero__title-char inline-block"
+            initial={{ clipPath: "inset(0 50% 0 50%)", opacity: 0 }}
+            animate={{ clipPath: "inset(0 0% 0 0%)", opacity: 1 }}
+            transition={{ duration: 0.85, delay: 0.2 + idx * 0.03, ease: "easeOut" }}
+          >
+            {char}
+          </motion.span>
+        );
+      });
+      return (
+        <span key={wordIdx} className="inline-block whitespace-nowrap">
+          {wordSpans}
+          {wordIdx < words.length - 1 && "\u00A0"}
+        </span>
+      );
+    });
+  }, []);
 
   return (
-    <section className="relative min-h-screen overflow-hidden hero-section cursor-target" id="home-hero">
+    <section className="relative flex min-h-[calc(100vh-5rem)] items-center justify-center overflow-hidden hero-section cursor-target" id="home-hero">
       <video
         className="absolute inset-0 h-full w-full object-cover"
         autoPlay
@@ -55,6 +67,7 @@ export default function HeroSection() {
         loop
         playsInline
         preload="auto"
+        poster="/assets/race1.jpg"
       >
         <source src="/assets/intro.mp4" type="video/mp4" />
       </video>
@@ -63,8 +76,8 @@ export default function HeroSection() {
       <div className="hero__particles" aria-hidden="true" />
       <div className="hero__exhaust" aria-hidden="true" />
 
-      <div className="relative z-20 mx-auto flex h-screen max-w-6xl flex-col items-center justify-center px-4 text-center text-white">
-        <h1 className="hero__title mb-4 text-5xl font-bold tracking-tight sm:text-6xl md:text-7xl">{charSpans}</h1>
+      <div className="relative z-20 mx-auto flex min-h-[calc(100vh-5rem)] w-full max-w-6xl flex-col items-center justify-center px-4 text-center text-white">
+        <h1 className="hero__title mb-4 text-4xl font-bold tracking-tight sm:text-6xl md:text-7xl">{charSpans}</h1>
         <motion.p
           className="hero__subtitle mb-8 text-lg text-[#ffc955] sm:text-2xl"
           initial={{ opacity: 0, y: 14 }}
@@ -85,14 +98,6 @@ export default function HeroSection() {
         </motion.button>
       </div>
       <div className="hero__speed-line" aria-hidden="true" />
-      <motion.img
-        src="/assets/car-hero.png"
-        alt="NIAMT racing car"
-        className="hero__car absolute bottom-8 left-1/2 z-20 w-[85vw] max-w-[980px] -translate-x-1/2"
-        initial={{ x: 240, opacity: 0 }}
-        animate={{ x: 0, opacity: 1 }}
-        transition={{ duration: 0.7, ease: [0.23, 1.2, 0.32, 1] }}
-      />
     </section>
   );
 }

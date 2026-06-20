@@ -34,7 +34,7 @@ export default function StatsCounter() {
 
   return (
     <section ref={ref} className="section stats-section reveal-section">
-      <div className="mx-auto grid w-[92vw] max-w-6xl grid-cols-1 gap-6 rounded-2xl border border-[#2a2a2a] bg-[#111111bf] p-6 shadow-xl md:grid-cols-3">
+      <div className="mx-auto grid w-full grid-cols-1 gap-6 rounded-2xl border border-[#2a2a2a] bg-[#111111bf] p-6 shadow-xl md:grid-cols-3">
         {stats.map((item) => (
           <article key={item.label} className="stat-card">
             <p className="stat-count text-4xl font-accent tracking-wide text-[#e8192c]">
