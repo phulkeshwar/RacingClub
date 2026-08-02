@@ -1,17 +1,41 @@
+﻿# Local history & editor backups (VS Code Local History)
+.history/
+**/.history/
+**/.history/*
+*_202*
+
+# Editor & System Clutter
+.vscode/
+**/.vscode/
+.idea/
+**/.idea/
+.DS_Store
+Thumbs.db
+
+# Dependencies & Build Artifacts
 node_modules/
-client/node_modules/
-server/node_modules/
-client/dist/
-build/
+**/node_modules/
 dist/
-.env
-server/.env
-client/.env
-client/.env.local
-client/.env.development.local
-client/.env.production.local
-server/.env.local
-server/.env.production
+**/dist/
+build/
+**/build/
+.next/
+**/.next/
+.out/
+**/.out/
+.astro/
+**/.astro/
+.pnpm-store/
+
+# Archives & Logs
+*.zip
+*.tar.gz
+*.crx
+*.log
 npm-debug.log*
 yarn-debug.log*
-yarn-error.log*
+
+# Environment & Secrets
+.env
+.env.*
+*.pem
